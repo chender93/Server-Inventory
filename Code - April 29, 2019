@@ -7,8 +7,19 @@ cd /home/serverinfo
 touch inventory
 echo “Your inventory started at” >> inventory
 date >> inventory
-echo “Hello! We will begin an inventory of your server now. You’ll see the information listed below”
+echo “Hello $LOGNAME ! We will begin an inventory of your server now. You’ll see the information listed below”
+echo "This inventory is being ran by $LOGNAME" >> inventory
 sleep 4
+echo
+echo "Server Uptime..."
+echo "Server Uptime" >> inventory
+uptime
+uptime >> inventory
+echo
+echo "Kernel Version..."
+echo "Kernel Version"
+uname -r
+uname -r >> inventory
 echo
 echo “CPU Information…”
 echo “CPU Information” >> inventory
