@@ -2,27 +2,43 @@
 #This script will be used to take inventory of your server
 #Author: Curtis Henderson
 #Date : April 29, 2019
+iff ()
+{
+if 
+  [ $? -ne 0 ]
+then
+echo "The script has been halted due to an error. Please review and run the script again!"
+rm -fr /home/serverinfo/inventory
+exit 99
+fi
+}
 mkdir /home/serverinfo
 cd /home/serverinfo
 touch inventory
 echo “Your inventory started at” >> inventory
 date >> inventory
+iff
 echo “Hello $LOGNAME ! We will begin an inventory of your server now. You’ll see the information listed below”
 echo "This inventory is being ran by $LOGNAME" >> inventory
+iff
 sleep 4
 echo
 echo "Server Uptime..."
 echo "Server Uptime" >> inventory
+iff
 uptime
 uptime >> inventory
+iff
 echo
 echo "Kernel Version..."
 echo "Kernel Version"
 uname -r
 uname -r >> inventory
+iff
 echo
 echo “CPU Information…”
 echo “CPU Information” >> inventory
+iff
 lscpu
 lscpu >> inventory
 echo
@@ -30,22 +46,27 @@ echo “Memory size…”
 echo “Memory size” >> inventory
 free -m
 free -m >> inventory
+iff
 echo
 echo “Default Runlevel…”
 echo “Default Runlevel” >> inventory
 runlevel 
 runlevel >> inventory
+iff
 echo
 echo “Number of CPU…”
 echo “CPU Amount”
 lscpu | grep CPU
 lscpu | grep CPU >> inventory
+iff
 echo
 echo “CPU Operating Modes”
 echo “CPU Operating Modes” >> inventory
+iff
 lscpu | grep mode
 lscpu | grep mode >> inventory
 echo
 echo “If you need revisit any of this information, you can find this inventory in the /home/serverinfo directory”
+iff
 sleep 4
 echo “Inventory finished!”
