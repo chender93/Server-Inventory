@@ -1,0 +1,40 @@
+#!/bin/bash
+#This script will be used to take inventory of your server
+#Author: Curtis Henderson
+#Date : April 29, 2019
+mkdir /home/serverinfo
+cd /home/serverinfo
+touch inventory
+echo “Your inventory started at” >> inventory
+date >> inventory
+echo “Hello! We will begin an inventory of your server now. You’ll see the information listed below”
+sleep 4
+echo
+echo “CPU Information…”
+echo “CPU Information” >> inventory
+lscpu
+lscpu >> inventory
+echo
+echo “Memory size…”
+echo “Memory size” >> inventory
+free -m
+free -m >> inventory
+echo
+echo “Default Runlevel…”
+echo “Default Runlevel” >> inventory
+runlevel 
+runlevel >> inventory
+echo
+echo “Number of CPU…”
+echo “CPU Amount”
+lscpu | grep CPU
+lscpu | grep CPU >> inventory
+echo
+echo “CPU Operating Modes”
+echo “CPU Operating Modes” >> inventory
+lscpu | grep mode
+lscpu | grep mode >> inventory
+echo
+echo “If you need revisit any of this information, you can find this inventory in the /home/serverinfo directory”
+sleep 4
+echo “Inventory finished!”
